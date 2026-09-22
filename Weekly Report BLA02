@@ -1,0 +1,22 @@
+Summary of Learning:
+
+* Amazon EBS provides block storage for EC2 instances, while Amazon EFS provides shared file storage that multiple instances can access simultaneously.
+* EBS volumes attach to instances within the same Availability Zone. Moving their data to another Availability Zone typically involves creating a snapshot and restoring a new volume.
+* EBS data can persist after an instance is terminated, provided the volume’s Delete on Termination setting is disabled.
+* Storage capacity, IOPS, and throughput measure different things: how much data a volume holds, how many read/write operations it handles per second, and how much data it transfers per second.
+* General Purpose SSD volumes, gp2 and gp3, balance performance and cost. gp2 performance scales with capacity, while gp3 allows performance to be configured independently.
+* Provisioned IOPS SSD volumes, io1 and io2 Block Express, support demanding applications that require consistent storage performance, such as critical databases.
+* Throughput Optimized HDD, st1, suits large sequential workloads. Cold HDD, sc1, suits infrequently accessed data, while Magnetic standard is a previous-generation option.
+* EBS Elastic Volumes supports capacity increases and changes to volume type and performance. Supported configurations allow these changes without detaching the volume or restarting the instance.
+* Increasing an EBS volume’s capacity may also require expanding its partition and file system before the operating system can use the additional space.
+* Amazon EFS manages shared file storage and automatically grows or shrinks as files are added or removed.
+* Regional EFS stores data across multiple Availability Zones. EFS One Zone stores data in a single Availability Zone and has different resilience characteristics.
+* EFS uses NFS and supports POSIX file-system semantics, allowing Linux applications to use familiar file operations, ownership, and permissions.
+* Security groups on EFS mount targets control network access. Clients typically need permission to connect using TCP port 2049, while file permissions determine what users can access after connecting.
+* EFS Standard supports frequently accessed data, Infrequent Access reduces storage costs for occasionally used files, and Archive targets rarely accessed data.
+* Lifecycle policies automatically transition eligible files between storage classes based on inactivity. Returning files to Standard when accessed again is an optional policy.
+* Choosing between EBS and EFS depends on the application’s access pattern, sharing requirements, performance needs, availability requirements, and cost.
+
+Reflection:
+
+The most useful lesson was understanding that choosing cloud storage involves more than selecting capacity. EBS and EFS solve different problems, and the correct choice depends on how an application accesses and shares its data. I also gained a clearer understanding of how storage performance, retention settings, security controls, and lifecycle policies affect reliability and cost. This knowledge gives me a stronger foundation for evaluating storage needs in applications and machine learning workloads.
